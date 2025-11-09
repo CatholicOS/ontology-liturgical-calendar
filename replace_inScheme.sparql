@@ -1,0 +1,9 @@
+DELETE {
+  ?s <http://www.w3.org/2004/02/skos/core#inScheme> <https://example.org/LitCal> .
+}
+INSERT {
+  ?s <http://www.w3.org/2004/02/skos/core#inScheme> <https://example.org/LiturgicalCalendar> .
+}
+WHERE {
+  ?s <http://www.w3.org/2004/02/skos/core#inScheme> <https://example.org/LitCal> .
+}
