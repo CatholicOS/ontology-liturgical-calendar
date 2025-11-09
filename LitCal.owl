@@ -1,0 +1,2203 @@
+@prefix LitCal: <https://example.org/LitCal> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+LitCal:.owl.ttl a owl:Ontology ;
+    rdfs:label "LitCal" .
+
+LitCal:AcceptLanguage a owl:Class ;
+    rdfs:label "AcceptLanguage" ;
+    skos:inScheme LitCal: .
+
+LitCal:Calendar a owl:Class ;
+    rdfs:label "Calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:CalendarSettings a owl:Class ;
+    rdfs:label "CalendarSettings" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Ascension ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:HolyDaysOfObligation ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Epiphany ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:EternalHighPriest ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:CorpusChristi ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:ascension ] ;
+    skos:definition "the settings utilized (and possibly requested) to generate the current calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:ConditionalRule a owl:Class ;
+    rdfs:label "ConditionalRule" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:condition ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:then ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:then ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:then ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:condition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:condition ] ;
+    skos:definition "a conditional rule that can be used to adjust dates of liturgical events based on certain conditions; an example is the National Day of Prayer for the Unborn in the United States" ;
+    skos:inScheme LitCal: .
+
+LitCal:DateTimeObjectCollection a owl:Class ;
+    rdfs:label "DateTimeObjectCollection" ;
+    skos:definition "a collection of date-time objects representing liturgical events, such as the solemnities of the Lord and the Blessed Virgin Mary, solemnities, feasts of the Lord, feasts, memorials, suppressed events, or reinstated events" ;
+    skos:inScheme LitCal: .
+
+LitCal:Day a owl:Class ;
+    rdfs:label "Day" ;
+    skos:definition "day of the month; the maximum value will be 28, 29, 30, or 31 depending on whether we are dealing with a leap year, and whether we are dealing with a month that usually has 28, 30, or 31 days" ;
+    skos:inScheme LitCal: .
+
+LitCal:DiocesanCalendarSettings a owl:Class ;
+    rdfs:label "DiocesanCalendarSettings" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Epiphany ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Locale ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:national_calendar ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReturnTypeOptions ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Year ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Nation ;
+            owl:onProperty LitCal:national_calendar ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:YearTypeOptions ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Ascension ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:diocesan_calendar ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:DiocesanCalendarId ;
+            owl:onProperty LitCal:diocesan_calendar ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:diocesan_calendar ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:CorpusChristi ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:HolyDaysOfObligation ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:national_calendar ] ;
+    skos:definition "the settings that were utilized (and possibly requested) to generate the diocesan calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:DioceseName a owl:Class ;
+    rdfs:label "DioceseName" ;
+    skos:definition "The full name of the Diocese for which a diocesan calendar has been defined / requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:GeneralRomanCalendarSettings a owl:Class ;
+    rdfs:label "GeneralRomanCalendarSettings" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:HolyDaysOfObligation ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:YearTypeOptions ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Year ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:CorpusChristi ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReturnTypeOptions ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Ascension ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Epiphany ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Locale ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ] ;
+    skos:definition ".the settings that were utilized (and possibly requested) to generate the General Roman Calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:LitCal a owl:Class ;
+    rdfs:label "LitCal" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:settings ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:metadata ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:messages ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:metadata ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:litcal ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:settings ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:messages ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:settings ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:litcal ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:metadata ] ;
+    skos:inScheme LitCal: .
+
+LitCal:LiturgicalEvent a owl:Class ;
+    rdfs:label "LiturgicalEvent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:day_of_the_week_iso8601 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitColor ;
+            owl:onProperty LitCal:color ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:psalter_week ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:month_long ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:readings ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade_abbr ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:month ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:common_lcl ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:holy_day_of_obligation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:holy_day_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:has_vesper_ii ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:color_lcl ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:has_vigil_mass ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:has_vigil_mass ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LiturgicalSeasonOptions ;
+            owl:onProperty LitCal:liturgical_season ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:month ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season_lcl ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_long ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:month_short ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:has_vesper_i ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:grade_abbr ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_iso8601 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:has_vesper_ii ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_long ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:liturgical_year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitGrade ;
+            owl:onProperty LitCal:grade ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:psalter_week ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:has_vesper_ii ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade_display ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Readings ;
+            owl:onProperty LitCal:readings ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:month_long ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:grade_display ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:common ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitEventType ;
+            owl:onProperty LitCal:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:month_long ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:color ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitCommon ;
+            owl:onProperty LitCal:common ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_iso8601 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:psalter_week ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:liturgical_year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:liturgical_season_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:day_of_the_week_short ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:grade_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:has_vesper_i ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:month_short ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:EventKeyNonVigilMass ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:month ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:holy_day_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:event_idx ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:color ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:grade_abbr ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:event_idx ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:has_vigil_mass ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:common_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:liturgical_year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:grade_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:grade_display ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:grade ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:common ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_short ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:readings ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:color_lcl ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_short ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:has_vesper_i ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:common_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:month_short ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:event_idx ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:day_of_the_week_long ] ;
+    skos:definition "a liturgical event in the calendar, such as a solemnity, feast, memorial, temporal celebration, weekday etc." ;
+    skos:inScheme LitCal: .
+
+LitCal:LiturgicalEventVigil a owl:Class ;
+    rdfs:label "LiturgicalEventVigil" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:day_of_the_week_long ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:grade_display ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_iso8601 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:is_vigil_mass ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:holy_day_of_obligation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:common_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:is_vigil_for ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:holy_day_of_obligation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:is_vigil_for ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:grade_abbr ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:day_of_the_week_iso8601 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:common_lcl ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:psalter_week ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:liturgical_season_lcl ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:grade_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:month_long ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:color ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:day_of_the_week_short ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:color_lcl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:common_lcl ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:month ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:month_short ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:event_idx ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season_lcl ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:month ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:month_long ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:is_vigil_mass ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:common ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:psalter_week ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_short ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:liturgical_season_lcl ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade_abbr ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:color_lcl ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitColor ;
+            owl:onProperty LitCal:color ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Readings ;
+            owl:onProperty LitCal:readings ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:month_short ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:is_vigil_mass ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:liturgical_year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:grade_abbr ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:EventKeyVigilMass ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:color ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:holy_day_of_obligation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:month ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade_display ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LiturgicalSeasonOptions ;
+            owl:onProperty LitCal:liturgical_season ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitGrade ;
+            owl:onProperty LitCal:grade ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:event_idx ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitCommon ;
+            owl:onProperty LitCal:common ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:event_idx ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:month_short ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:common ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:grade_display ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:liturgical_year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:liturgical_year ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:readings ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_short ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:is_vigil_for ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade_lcl ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_long ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_iso8601 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:psalter_week ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:month_long ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:grade ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:LitEventType ;
+            owl:onProperty LitCal:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:readings ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week_long ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:grade_lcl ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:grade ] ;
+    skos:definition "When we say vigil, it is in the broad sense of the term, as in the evening Mass on the day preceding the main celebration, where the readings are often the same as those of the day of the main celebration." ;
+    skos:inScheme LitCal: .
+
+LitCal:MissalDef a owl:Class ;
+    rdfs:label "MissalDef" ;
+    skos:definition "an enumeration of Roman Missals supported by the Liturgical Calendar API" ;
+    skos:inScheme LitCal: .
+
+LitCal:MissalFileName a owl:Class ;
+    rdfs:label "MissalFileName" ;
+    skos:inScheme LitCal: .
+
+LitCal:MissalID a owl:Class ;
+    rdfs:label "MissalID" ;
+    skos:definition "an enumeration of Roman Missal IDs for the Roman Missals supported by the Liturgical Calendar API" ;
+    skos:inScheme LitCal: .
+
+LitCal:MissalName a owl:Class ;
+    rdfs:label "MissalName" ;
+    skos:definition "an enumeration of Roman Missal names for the Roman Missals supported by the Liturgical Calendar API" ;
+    skos:inScheme LitCal: .
+
+LitCal:Missals a owl:Class ;
+    rdfs:label "Missals" ;
+    skos:definition "Missals as defined in the PHP RomanMissal enum, from which data for the current calendar is drawn" ;
+    skos:inScheme LitCal: .
+
+LitCal:Month a owl:Class ;
+    rdfs:label "Month" ;
+    skos:definition "the month for the liturgical event, represented as an integer from 1 (January) to 12 (December)" ;
+    skos:inScheme LitCal: .
+
+LitCal:NationalCalendarAction a owl:Class ;
+    rdfs:label "NationalCalendarAction" ;
+    skos:definition "an enumeration of supported actions that act upon a liturgical event in a National calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:NationalCalendarId a owl:Class ;
+    rdfs:label "NationalCalendarId" ;
+    skos:definition "a unique identifier for a national calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:NationalCalendarSettings a owl:Class ;
+    rdfs:label "NationalCalendarSettings" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Epiphany ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReturnTypeOptions ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Nation ;
+            owl:onProperty LitCal:national_calendar ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Locale ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:HolyDaysOfObligation ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:CorpusChristi ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:locale ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Year ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:YearTypeOptions ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:corpus_christi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:Ascension ;
+            owl:onProperty LitCal:ascension ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:epiphany ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:national_calendar ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:return_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:eternal_high_priest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:holydays_of_obligation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:national_calendar ] ;
+    skos:definition "the settings utilized (and possibly requested) to generate the national calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsChristmas a owl:Class ;
+    rdfs:label "ReadingsChristmas" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:night ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:dawn ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:night ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:dawn ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:dawn ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:night ] ;
+    skos:definition "the standard lectionary reading schema for Christmas Masses (Night, Dawn, and Day); the evening vigil Mass is separated out into its own event" ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsCommons a owl:Class ;
+    rdfs:label "ReadingsCommons" ;
+    skos:definition "Used for memorials and optional memorials that do not have a Proper lectionary. The readings are taken from the Common of Saints, or from Masses for Various Needs and Occasions, as appropriate. Indicates the name of the Common or Mass for Various Needs and Occasions from which the readings are taken." ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsEasterVigil a owl:Class ;
+    rdfs:label "ReadingsEasterVigil" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:third_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_4 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_epistle ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:sixth_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:seventh_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_2 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_7 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm_epistle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:fourth_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:fifth_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm_5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_2 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_3 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:fifth_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:fourth_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:third_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:third_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm_4 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_6 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_4 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_7 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm_7 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_epistle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm_3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm_3 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm_6 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:seventh_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:fourth_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:seventh_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:sixth_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:epistle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:sixth_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:epistle ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:fifth_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:epistle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm_2 ] ;
+    skos:definition "the standard lectionary reading schema for the Easter Vigil Mass" ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsMultipleSchemas a owl:Class ;
+    rdfs:label "ReadingsMultipleSchemas" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:schema_one ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:schema_two ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:schema_two ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:schema_one ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:schema_one ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:schema_three ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:schema_three ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:schema_three ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:schema_two ] ;
+    skos:definition "Used for All Souls Day (Commemoration of the Faithful Departed), which has three possible schemas for the three allowed Masses." ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsPalmSunday a owl:Class ;
+    rdfs:label "ReadingsPalmSunday" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:palm_gospel ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:palm_gospel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:palm_gospel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel_acclamation ] ;
+    skos:definition "the standard lectionary reading schema for Palm Sunday Masses" ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsSeasonal a owl:Class ;
+    rdfs:label "ReadingsSeasonal" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFerial ;
+            owl:onProperty LitCal:outside_easter_season ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:outside_easter_season ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:easter_season ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:outside_easter_season ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:easter_season ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFerial ;
+            owl:onProperty LitCal:easter_season ] ;
+    skos:definition "Lectionary readings that change depending on whether the liturgical event falls within the Easter season." ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsWithEvening a owl:Class ;
+    rdfs:label "ReadingsWithEvening" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:evening ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:evening ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:ReadingsFestive ;
+            owl:onProperty LitCal:day ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:evening ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day ] ;
+    skos:definition "Used for Easter Sunday, which has both a daytime and an evening Mass, each with proper readings." ;
+    skos:inScheme LitCal: .
+
+LitCal:RelativeDateObject a owl:Class ;
+    rdfs:label "RelativeDateObject" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:EventKey ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:day_of_the_week ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:RelativeTimeOptions ;
+            owl:onProperty LitCal:relative_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:event_key ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom LitCal:DayOfTheWeekOptions ;
+            owl:onProperty LitCal:day_of_the_week ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:relative_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:relative_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:event_key ] ;
+    skos:definition "a relative date object, describing a day of the week relative to a liturgical event, useful for calculating moveable celebrations" ;
+    skos:inScheme LitCal: .
+
+LitCal:Timestamp a owl:Class ;
+    rdfs:label "Timestamp" ;
+    skos:definition "the earliest possible event timestamp corresponds to Nov 29th 1969, saturday vigil of the First Sunday of Advent" ;
+    skos:inScheme LitCal: .
+
+LitCal:Timezone a owl:Class ;
+    rdfs:label "Timezone" ;
+    skos:definition "a timezone identifier from the IANA Time Zone Database, useful for indicating the timezone for a diocesan calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:WiderRegionCalendarAction a owl:Class ;
+    rdfs:label "WiderRegionCalendarAction" ;
+    skos:definition "an enumeration of supported actions that act upon a liturgical event in a Wider Region calendar definition" ;
+    skos:inScheme LitCal: .
+
+LitCal:WiderRegionNames a owl:Class ;
+    rdfs:label "WiderRegionNames" ;
+    skos:inScheme LitCal: .
+
+LitCal:EternalHighPriest a owl:Class ;
+    rdfs:label "EternalHighPriest" ;
+    skos:definition "Whether the Jesus Christ, the Eternal High Priest, is celebrated in the current calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:EventKey a owl:Class ;
+    rdfs:label "EventKey" ;
+    skos:definition "the `event_key` property of liturgical events in the output of the LitCal API and similar endpoints" ;
+    skos:inScheme LitCal: .
+
+LitCal:EventKeyVigilMass a owl:Class ;
+    rdfs:label "EventKeyVigilMass" ;
+    skos:definition "the `event_key` property of Vigil Mass liturgical events in the output of the LitCal API and similar endpoints; vigil is used in the broad sense, i.e., the evening Mass on the day before a solemnity or sunday where the readings may be the same as those used on the day itself" ;
+    skos:inScheme LitCal: .
+
+<https://example.org/LitCalDayOfTheWeekOptions#Friday> a owl:Class ;
+    rdfs:label "Friday" ;
+    rdfs:subClassOf LitCal:DayOfTheWeekOptions .
+
+<https://example.org/LitCalDayOfTheWeekOptions#Monday> a owl:Class ;
+    rdfs:label "Monday" ;
+    rdfs:subClassOf LitCal:DayOfTheWeekOptions .
+
+<https://example.org/LitCalDayOfTheWeekOptions#Saturday> a owl:Class ;
+    rdfs:label "Saturday" ;
+    rdfs:subClassOf LitCal:DayOfTheWeekOptions .
+
+<https://example.org/LitCalDayOfTheWeekOptions#Sunday> a owl:Class ;
+    rdfs:label "Sunday" ;
+    rdfs:subClassOf LitCal:DayOfTheWeekOptions .
+
+<https://example.org/LitCalDayOfTheWeekOptions#Thursday> a owl:Class ;
+    rdfs:label "Thursday" ;
+    rdfs:subClassOf LitCal:DayOfTheWeekOptions .
+
+<https://example.org/LitCalDayOfTheWeekOptions#Tuesday> a owl:Class ;
+    rdfs:label "Tuesday" ;
+    rdfs:subClassOf LitCal:DayOfTheWeekOptions .
+
+<https://example.org/LitCalDayOfTheWeekOptions#Wednesday> a owl:Class ;
+    rdfs:label "Wednesday" ;
+    rdfs:subClassOf LitCal:DayOfTheWeekOptions .
+
+LitCal:DiocesanCalendarId a owl:Class ;
+    rdfs:label "DiocesanCalendarId" ;
+    skos:definition "a unique identifier for a diocesan calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:EventKeyNonVigilMass a owl:Class ;
+    rdfs:label "EventKeyNonVigilMass" ;
+    skos:definition "the `event_key` property of the main celebration of a liturgical event in the output of the LitCal API and similar endpoints" ;
+    skos:inScheme LitCal: .
+
+<https://example.org/LitCalLiturgicalSeasonOptions#ADVENT> a owl:Class ;
+    rdfs:label "ADVENT" ;
+    rdfs:subClassOf LitCal:LiturgicalSeasonOptions .
+
+<https://example.org/LitCalLiturgicalSeasonOptions#CHRISTMAS> a owl:Class ;
+    rdfs:label "CHRISTMAS" ;
+    rdfs:subClassOf LitCal:LiturgicalSeasonOptions .
+
+<https://example.org/LitCalLiturgicalSeasonOptions#EASTER> a owl:Class ;
+    rdfs:label "EASTER" ;
+    rdfs:subClassOf LitCal:LiturgicalSeasonOptions .
+
+<https://example.org/LitCalLiturgicalSeasonOptions#EASTER_TRIDUUM> a owl:Class ;
+    rdfs:label "EASTER_TRIDUUM" ;
+    rdfs:subClassOf LitCal:LiturgicalSeasonOptions .
+
+<https://example.org/LitCalLiturgicalSeasonOptions#LENT> a owl:Class ;
+    rdfs:label "LENT" ;
+    rdfs:subClassOf LitCal:LiturgicalSeasonOptions .
+
+<https://example.org/LitCalLiturgicalSeasonOptions#ORDINARY_TIME> a owl:Class ;
+    rdfs:label "ORDINARY_TIME" ;
+    rdfs:subClassOf LitCal:LiturgicalSeasonOptions .
+
+<https://example.org/LitCalRelativeTimeOptions#after> a owl:Class ;
+    rdfs:label "after" ;
+    rdfs:subClassOf LitCal:RelativeTimeOptions .
+
+<https://example.org/LitCalRelativeTimeOptions#before> a owl:Class ;
+    rdfs:label "before" ;
+    rdfs:subClassOf LitCal:RelativeTimeOptions .
+
+<https://example.org/LitCalReturnTypeOptions#ICS> a owl:Class ;
+    rdfs:label "ICS" ;
+    rdfs:subClassOf LitCal:ReturnTypeOptions .
+
+<https://example.org/LitCalReturnTypeOptions#JSON> a owl:Class ;
+    rdfs:label "JSON" ;
+    rdfs:subClassOf LitCal:ReturnTypeOptions .
+
+<https://example.org/LitCalReturnTypeOptions#XML> a owl:Class ;
+    rdfs:label "XML" ;
+    rdfs:subClassOf LitCal:ReturnTypeOptions .
+
+<https://example.org/LitCalReturnTypeOptions#YML> a owl:Class ;
+    rdfs:label "YML" ;
+    rdfs:subClassOf LitCal:ReturnTypeOptions .
+
+<https://example.org/LitCalYearTypeOptions#CIVIL> a owl:Class ;
+    rdfs:label "CIVIL" ;
+    rdfs:subClassOf LitCal:YearTypeOptions .
+
+<https://example.org/LitCalYearTypeOptions#LITURGICAL> a owl:Class ;
+    rdfs:label "LITURGICAL" ;
+    rdfs:subClassOf LitCal:YearTypeOptions .
+
+LitCal:litcal a owl:ObjectProperty ;
+    rdfs:label "litcal" ;
+    skos:definition "Can be either a LiturgicalEvent or LiturgicalEventVigil" ;
+    skos:inScheme LitCal: .
+
+LitCal:messages a owl:ObjectProperty ;
+    rdfs:label "messages" ;
+    skos:inScheme LitCal: .
+
+LitCal:AllSaints a owl:DatatypeProperty ;
+    rdfs:label "AllSaints" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:Assumption a owl:DatatypeProperty ;
+    rdfs:label "Assumption" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:Christmas a owl:DatatypeProperty ;
+    rdfs:label "Christmas" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:ImmaculateConception a owl:DatatypeProperty ;
+    rdfs:label "ImmaculateConception" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:LitColor a owl:Class ;
+    rdfs:label "LitColor" ;
+    skos:definition "an array of enumeration values describing the liturgical color(s) associated with the celebration; if more than one liturgical common is associated with a celebration, there may be more than one color associated with the celebration" ;
+    skos:inScheme LitCal: .
+
+LitCal:LitCommon a owl:Class ;
+    rdfs:label "LitCommon" ;
+    skos:definition "an array of enumeration values describing the Liturgical Common(s), or Proper, or Masses for Various Needs and Occasions, of the celebration" ;
+    skos:inScheme LitCal: .
+
+LitCal:LitEventType a owl:Class ;
+    rdfs:label "LitEventType" ;
+    skos:definition "an enumeration value indicating whether the liturgical event is of type `fixed` or `mobile`" ;
+    skos:inScheme LitCal: .
+
+LitCal:LitGrade a owl:Class ;
+    rdfs:label "LitGrade" ;
+    skos:definition "0 = WEEKDAY, 1 = COMMEMORATION, 2 = MEMORIAL_OPT, 3 = MEMORIAL, 4 = FEAST, 5 = FEAST_LORD, 6 = SOLEMNITY, 7 = HIGHER_SOLEMNITY" ;
+    skos:inScheme LitCal: .
+
+LitCal:MaryMotherOfGod a owl:DatatypeProperty ;
+    rdfs:label "MaryMotherOfGod" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:Nation a owl:Class ;
+    rdfs:label "Nation" ;
+    skos:definition "an enumeration of ISO 3166-1 alpha-2 country codes representing nations for which national liturgical calendars can be defined" ;
+    skos:inScheme LitCal: .
+
+LitCal:Readings a owl:Class ;
+    rdfs:label "Readings" ;
+    skos:definition "the lectionary readings for the Mass associated with this liturgical event, following one of several possible schemas depending on the type of celebration" ;
+    skos:inScheme LitCal: .
+
+LitCal:StJoseph a owl:DatatypeProperty ;
+    rdfs:label "StJoseph" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:StsPeterPaulAp a owl:DatatypeProperty ;
+    rdfs:label "StsPeterPaulAp" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:condition a owl:ObjectProperty ;
+    rdfs:label "condition" ;
+    skos:inScheme LitCal: .
+
+LitCal:dawn a owl:ObjectProperty ;
+    rdfs:label "dawn" ;
+    rdfs:range LitCal:ReadingsFestive ;
+    skos:inScheme LitCal: .
+
+LitCal:day_of_the_week a owl:ObjectProperty ;
+    rdfs:label "day_of_the_week" ;
+    rdfs:range LitCal:DayOfTheWeekOptions ;
+    skos:inScheme LitCal: .
+
+LitCal:diocesan_calendar a owl:ObjectProperty ;
+    rdfs:label "diocesan_calendar" ;
+    rdfs:range LitCal:DiocesanCalendarId ;
+    skos:inScheme LitCal: .
+
+LitCal:easter_season a owl:ObjectProperty ;
+    rdfs:label "easter_season" ;
+    rdfs:range LitCal:ReadingsFerial ;
+    skos:inScheme LitCal: .
+
+LitCal:epistle a owl:ObjectProperty ;
+    rdfs:label "epistle" ;
+    skos:inScheme LitCal: .
+
+LitCal:evening a owl:ObjectProperty ;
+    rdfs:label "evening" ;
+    rdfs:range LitCal:ReadingsFestive ;
+    skos:inScheme LitCal: .
+
+LitCal:fifth_reading a owl:ObjectProperty ;
+    rdfs:label "fifth_reading" ;
+    skos:inScheme LitCal: .
+
+LitCal:fourth_reading a owl:ObjectProperty ;
+    rdfs:label "fourth_reading" ;
+    skos:inScheme LitCal: .
+
+LitCal:has_vesper_i a owl:DatatypeProperty ;
+    rdfs:label "has_vesper_i" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "indicates whether the celebration has First Vespers (the vespers of the evening prior to the main celebration)" ;
+    skos:inScheme LitCal: .
+
+LitCal:has_vesper_ii a owl:DatatypeProperty ;
+    rdfs:label "has_vesper_ii" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "indicates whether the celebration has Second Vespers (the vespers of the evening of the day of the main celebration)" ;
+    skos:inScheme LitCal: .
+
+LitCal:has_vigil_mass a owl:DatatypeProperty ;
+    rdfs:label "has_vigil_mass" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "indicates whether the celebration has an associated Vigil Mass (i.e., the evening Mass on the day before the main celebration where the readings may be the same as those used on the day itself)" ;
+    skos:inScheme LitCal: .
+
+LitCal:is_vigil_for a owl:ObjectProperty ;
+    rdfs:label "is_vigil_for" ;
+    skos:definition "the `event_key` of the main celebration for which this vigil mass is being held" ;
+    skos:inScheme LitCal: .
+
+LitCal:is_vigil_mass a owl:DatatypeProperty ;
+    rdfs:label "is_vigil_mass" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "the property will only exist and will be true if the celebration is a Vigil Mass (i.e., the evening Mass on the day before a solemnity or sunday where the readings may be the same as those used on the day itself); otherwise the property will be absent" ;
+    skos:inScheme LitCal: .
+
+LitCal:metadata a owl:ObjectProperty ;
+    rdfs:label "metadata" ;
+    skos:definition "contains information about the current API version, how and when the current response was produced, and keys of liturgical events that can have precedence over others, useful for further calculations of a local calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:night a owl:ObjectProperty ;
+    rdfs:label "night" ;
+    rdfs:range LitCal:ReadingsFestive ;
+    skos:inScheme LitCal: .
+
+LitCal:outside_easter_season a owl:ObjectProperty ;
+    rdfs:label "outside_easter_season" ;
+    rdfs:range LitCal:ReadingsFerial ;
+    skos:inScheme LitCal: .
+
+LitCal:palm_gospel a owl:ObjectProperty ;
+    rdfs:label "palm_gospel" ;
+    skos:inScheme LitCal: .
+
+LitCal:relative_time a owl:ObjectProperty ;
+    rdfs:label "relative_time" ;
+    rdfs:range LitCal:RelativeTimeOptions ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm_2 a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm_2" ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm_3 a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm_3" ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm_4 a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm_4" ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm_5 a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm_5" ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm_6 a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm_6" ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm_7 a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm_7" ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm_epistle a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm_epistle" ;
+    skos:inScheme LitCal: .
+
+LitCal:schema_one a owl:ObjectProperty ;
+    rdfs:label "schema_one" ;
+    rdfs:range LitCal:ReadingsFestive ;
+    skos:inScheme LitCal: .
+
+LitCal:schema_three a owl:ObjectProperty ;
+    rdfs:label "schema_three" ;
+    rdfs:range LitCal:ReadingsFestive ;
+    skos:inScheme LitCal: .
+
+LitCal:schema_two a owl:ObjectProperty ;
+    rdfs:label "schema_two" ;
+    rdfs:range LitCal:ReadingsFestive ;
+    skos:inScheme LitCal: .
+
+LitCal:settings a owl:ObjectProperty ;
+    rdfs:label "settings" ;
+    skos:definition "Settings for the liturgical calendar request - can be one of GeneralRomanCalendarSettings, NationalCalendarSettings, or DiocesanCalendarSettings" ;
+    skos:inScheme LitCal: .
+
+LitCal:seventh_reading a owl:ObjectProperty ;
+    rdfs:label "seventh_reading" ;
+    skos:inScheme LitCal: .
+
+LitCal:sixth_reading a owl:ObjectProperty ;
+    rdfs:label "sixth_reading" ;
+    skos:inScheme LitCal: .
+
+LitCal:then a owl:ObjectProperty ;
+    rdfs:label "then" ;
+    skos:inScheme LitCal: .
+
+LitCal:third_reading a owl:ObjectProperty ;
+    rdfs:label "third_reading" ;
+    skos:inScheme LitCal: .
+
+LitCal:Locale a owl:Class ;
+    rdfs:label "Locale" ;
+    skos:definition "IETF language codes comprehensive of region and optionally an ISO 15924 script code, following the BCP 47 standard as implemented in PHP intl" ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsFerial a owl:Class ;
+    rdfs:label "ReadingsFerial" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel_acclamation ] ;
+    skos:definition "the standard lectionary reading schema for ferial (weekday) Masses" ;
+    skos:inScheme LitCal: .
+
+LitCal:RelativeTimeOptions a owl:Class ;
+    rdfs:label "relative_time_options" ;
+    owl:unionOf ( <https://example.org/LitCalRelativeTimeOptions#before> <https://example.org/LitCalRelativeTimeOptions#after> ) ;
+    skos:inScheme LitCal: ;
+    linkml:permissible_values <https://example.org/LitCalRelativeTimeOptions#after>,
+        <https://example.org/LitCalRelativeTimeOptions#before> .
+
+LitCal:Year a owl:Class ;
+    rdfs:label "Year" ;
+    skos:definition "the year for the liturgical event or for the current requested calendar, represented as a four-digit integer" ;
+    skos:inScheme LitCal: .
+
+LitCal:color_lcl a owl:ObjectProperty ;
+    rdfs:label "color_lcl" ;
+    skos:inScheme LitCal: .
+
+LitCal:HolyDaysOfObligation a owl:Class ;
+    rdfs:label "HolyDaysOfObligation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:CorpusChristi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:ImmaculateConception ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:AllSaints ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:StJoseph ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:Ascension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:StJoseph ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:Assumption ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:MaryMotherOfGod ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:ImmaculateConception ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:Ascension ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:Epiphany ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:Epiphany ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:AllSaints ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:Christmas ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:Christmas ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:StJoseph ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:CorpusChristi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:Christmas ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:ImmaculateConception ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:AllSaints ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:Ascension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:Assumption ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:CorpusChristi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:StsPeterPaulAp ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:Assumption ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:StsPeterPaulAp ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:StsPeterPaulAp ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:MaryMotherOfGod ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty LitCal:Epiphany ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty LitCal:MaryMotherOfGod ] ;
+    skos:definition "a map of `event_key`s to booleans, that indicate which of the standard holy days of obligation are observed in the current requested calendar, plus any additional holy days of obligation proper to the calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:YearTypeOptions a owl:Class ;
+    rdfs:label "year_type_options" ;
+    owl:unionOf ( <https://example.org/LitCalYearTypeOptions#CIVIL> <https://example.org/LitCalYearTypeOptions#LITURGICAL> ) ;
+    skos:inScheme LitCal: ;
+    linkml:permissible_values <https://example.org/LitCalYearTypeOptions#CIVIL>,
+        <https://example.org/LitCalYearTypeOptions#LITURGICAL> .
+
+LitCal:color a owl:ObjectProperty ;
+    rdfs:label "color" ;
+    rdfs:range LitCal:LitColor ;
+    skos:inScheme LitCal: .
+
+LitCal:common a owl:ObjectProperty ;
+    rdfs:label "common" ;
+    rdfs:range LitCal:LitCommon ;
+    skos:inScheme LitCal: .
+
+LitCal:common_lcl a owl:ObjectProperty ;
+    rdfs:label "common_lcl" ;
+    skos:definition "a localized string describing the liturgical Proper or common(s) (if any) associated with the celebration, according to the locale requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:date a owl:ObjectProperty ;
+    rdfs:label "date" ;
+    skos:definition "the date of the liturgical event in ISO 8601 (RFC 3339) format, always at midnight UTC time" ;
+    skos:inScheme LitCal: .
+
+LitCal:day_of_the_week_iso8601 a owl:DatatypeProperty ;
+    rdfs:label "day_of_the_week_iso8601" ;
+    rdfs:range xsd:integer ;
+    skos:definition "the day of the week for the liturgical event, following the ISO 8601 standard where Monday is 1 and Sunday is 7" ;
+    skos:inScheme LitCal: .
+
+LitCal:day_of_the_week_long a owl:ObjectProperty ;
+    rdfs:label "day_of_the_week_long" ;
+    skos:definition "a localized full string for the day of the week of the liturgical event, such as 'lunedì' for Monday if Italian was requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:day_of_the_week_short a owl:ObjectProperty ;
+    rdfs:label "day_of_the_week_short" ;
+    skos:definition "a localized abbreviated string for the day of the week of the liturgical event, such as 'lun.' for Monday if Italian was requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:event_idx a owl:DatatypeProperty ;
+    rdfs:label "event_idx" ;
+    rdfs:range xsd:integer ;
+    skos:definition "A sequential index number assigned to each liturgical event in the calendar, starting from 0 for the first event that is calculated. This index helps to uniquely identify and reference each event within the liturgical calendar for that year, seeing that the `event_key` property might not be unique." ;
+    skos:inScheme LitCal: .
+
+LitCal:grade a owl:ObjectProperty ;
+    rdfs:label "grade" ;
+    rdfs:range LitCal:LitGrade ;
+    skos:inScheme LitCal: .
+
+LitCal:grade_abbr a owl:ObjectProperty ;
+    rdfs:label "grade_abbr" ;
+    skos:definition "a localized abbreviation for the liturgical grade of the celebration, such as 'S' for Solemnity, 'F' for Feast, 'M' for Memorial, etc." ;
+    skos:inScheme LitCal: .
+
+LitCal:grade_display a owl:ObjectProperty ;
+    rdfs:label "grade_display" ;
+    skos:definition "a localized string for display purposes that may differ from the standard name of the liturgical grade; can be null if no special display name is needed, or an empty string if no particular grade is meant to be shown. For example, for Higher Grade Solemnities it would be undesirable to display 'Solemnity with precedence over other solemnities', so this property would be an empty string in that case; or for All Souls Day which is logically treated as a Solemnity but displayed as a 'Commemoration' or as an 'Optional memorial' (according to local translations), so a localized string such as 'Commemoration' or 'Optional memorial' would be appropriate." ;
+    skos:inScheme LitCal: .
+
+LitCal:grade_lcl a owl:ObjectProperty ;
+    rdfs:label "grade_lcl" ;
+    skos:definition "a localized string describing the liturgical grade of the celebration, such as 'Solemnity', 'Feast', 'Memorial', etc., according to the locale requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:holy_day_of_obligation a owl:DatatypeProperty ;
+    rdfs:label "holy_day_of_obligation" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "the property will only exist and will be true if the celebration is a Holy Day of Obligation, according to the calendar requested; otherwise the property will be absent" ;
+    skos:inScheme LitCal: .
+
+LitCal:liturgical_season a owl:ObjectProperty ;
+    rdfs:label "liturgical_season" ;
+    rdfs:range LitCal:LiturgicalSeasonOptions ;
+    skos:definition "an enumeration value of the liturgical season in which the event falls, one of: ADVENT, CHRISTMAS, LENT, EASTER_TRIDUUM, EASTER, ORDINARY_TIME" ;
+    skos:inScheme LitCal: .
+
+LitCal:liturgical_season_lcl a owl:ObjectProperty ;
+    rdfs:label "liturgical_season_lcl" ;
+    skos:definition "a localized string representing the name of the liturgical season in which the event falls, according to the locale requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:liturgical_year a owl:ObjectProperty ;
+    rdfs:label "liturgical_year" ;
+    skos:definition "a localized string representing the liturgical year designation (YEAR A, YEAR B, or YEAR C for Sundays and Solemnities; YEAR I or YEAR II for weekdays) according to the liturgical calendar cycle in use for the requested year" ;
+    skos:inScheme LitCal: .
+
+LitCal:month a owl:DatatypeProperty ;
+    rdfs:label "month" ;
+    rdfs:range xsd:integer ;
+    skos:definition "the month for the liturgical event, represented as an integer from 1 (January) to 12 (December)" ;
+    skos:inScheme LitCal: .
+
+LitCal:month_long a owl:ObjectProperty ;
+    rdfs:label "month_long" ;
+    skos:definition "a localized full string for the month of the liturgical event, such as 'gennaio' for January if Italian was requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:month_short a owl:ObjectProperty ;
+    rdfs:label "month_short" ;
+    skos:definition "a localized abbreviated string for the month of the liturgical event, such as 'gen.' for January if Italian was requested" ;
+    skos:inScheme LitCal: .
+
+LitCal:name a owl:ObjectProperty ;
+    rdfs:label "name" ;
+    skos:definition "the localized full name of the liturgical event in the locale requested and according to the current requested calendar (i.e. General Roman Calendar, National Calendar, Diocesan Calendar)" ;
+    skos:inScheme LitCal: .
+
+LitCal:national_calendar a owl:ObjectProperty ;
+    rdfs:label "national_calendar" ;
+    rdfs:range LitCal:Nation ;
+    skos:inScheme LitCal: .
+
+LitCal:psalter_week a owl:DatatypeProperty ;
+    rdfs:label "psalter_week" ;
+    rdfs:range xsd:integer ;
+    skos:definition "the psalter week (1 to 4) for the liturgical event, used in the Liturgy of the Hours, if applicable; otherwise 0" ;
+    skos:inScheme LitCal: .
+
+LitCal:readings a owl:ObjectProperty ;
+    rdfs:label "readings" ;
+    rdfs:range LitCal:Readings ;
+    skos:inScheme LitCal: .
+
+LitCal:type a owl:ObjectProperty ;
+    rdfs:label "type" ;
+    rdfs:range LitCal:LitEventType ;
+    skos:inScheme LitCal: .
+
+LitCal:Ascension a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "Ascension" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Enumeration that describes when Ascension is celebrated in the current calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:CorpusChristi a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "CorpusChristi" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Enumeration that describes when Corpus Christi is celebrated in the current calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:Epiphany a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:label "Epiphany" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Enumeration that describes when Epiphany is celebrated in the current calendar" ;
+    skos:inScheme LitCal: .
+
+LitCal:ReturnTypeOptions a owl:Class ;
+    rdfs:label "return_type_options" ;
+    owl:unionOf ( <https://example.org/LitCalReturnTypeOptions#ICS> <https://example.org/LitCalReturnTypeOptions#JSON> <https://example.org/LitCalReturnTypeOptions#XML> <https://example.org/LitCalReturnTypeOptions#YML> ) ;
+    skos:inScheme LitCal: ;
+    linkml:permissible_values <https://example.org/LitCalReturnTypeOptions#ICS>,
+        <https://example.org/LitCalReturnTypeOptions#JSON>,
+        <https://example.org/LitCalReturnTypeOptions#XML>,
+        <https://example.org/LitCalReturnTypeOptions#YML> .
+
+LitCal:DayOfTheWeekOptions a owl:Class ;
+    rdfs:label "day_of_the_week_options" ;
+    owl:unionOf ( <https://example.org/LitCalDayOfTheWeekOptions#Sunday> <https://example.org/LitCalDayOfTheWeekOptions#Monday> <https://example.org/LitCalDayOfTheWeekOptions#Tuesday> <https://example.org/LitCalDayOfTheWeekOptions#Wednesday> <https://example.org/LitCalDayOfTheWeekOptions#Thursday> <https://example.org/LitCalDayOfTheWeekOptions#Friday> <https://example.org/LitCalDayOfTheWeekOptions#Saturday> ) ;
+    skos:inScheme LitCal: ;
+    linkml:permissible_values <https://example.org/LitCalDayOfTheWeekOptions#Friday>,
+        <https://example.org/LitCalDayOfTheWeekOptions#Monday>,
+        <https://example.org/LitCalDayOfTheWeekOptions#Saturday>,
+        <https://example.org/LitCalDayOfTheWeekOptions#Sunday>,
+        <https://example.org/LitCalDayOfTheWeekOptions#Thursday>,
+        <https://example.org/LitCalDayOfTheWeekOptions#Tuesday>,
+        <https://example.org/LitCalDayOfTheWeekOptions#Wednesday> .
+
+LitCal:LiturgicalSeasonOptions a owl:Class ;
+    rdfs:label "liturgical_season_options" ;
+    owl:unionOf ( <https://example.org/LitCalLiturgicalSeasonOptions#ADVENT> <https://example.org/LitCalLiturgicalSeasonOptions#CHRISTMAS> <https://example.org/LitCalLiturgicalSeasonOptions#LENT> <https://example.org/LitCalLiturgicalSeasonOptions#EASTER_TRIDUUM> <https://example.org/LitCalLiturgicalSeasonOptions#EASTER> <https://example.org/LitCalLiturgicalSeasonOptions#ORDINARY_TIME> ) ;
+    skos:inScheme LitCal: ;
+    linkml:permissible_values <https://example.org/LitCalLiturgicalSeasonOptions#ADVENT>,
+        <https://example.org/LitCalLiturgicalSeasonOptions#CHRISTMAS>,
+        <https://example.org/LitCalLiturgicalSeasonOptions#EASTER>,
+        <https://example.org/LitCalLiturgicalSeasonOptions#EASTER_TRIDUUM>,
+        <https://example.org/LitCalLiturgicalSeasonOptions#LENT>,
+        <https://example.org/LitCalLiturgicalSeasonOptions#ORDINARY_TIME> .
+
+LitCal:event_key a owl:ObjectProperty ;
+    rdfs:label "event_key" ;
+    rdfs:range LitCal:EventKeyNonVigilMass ;
+    skos:inScheme LitCal: .
+
+LitCal:locale a owl:ObjectProperty ;
+    rdfs:label "locale" ;
+    rdfs:range LitCal:Locale ;
+    skos:inScheme LitCal: .
+
+LitCal:return_type a owl:ObjectProperty ;
+    rdfs:label "return_type" ;
+    rdfs:range LitCal:ReturnTypeOptions ;
+    skos:inScheme LitCal: .
+
+LitCal:second_reading a owl:ObjectProperty ;
+    rdfs:label "second_reading" ;
+    skos:inScheme LitCal: .
+
+LitCal:year_type a owl:ObjectProperty ;
+    rdfs:label "year_type" ;
+    rdfs:range LitCal:YearTypeOptions ;
+    skos:inScheme LitCal: .
+
+LitCal:ascension a owl:ObjectProperty ;
+    rdfs:label "ascension" ;
+    rdfs:range LitCal:Ascension ;
+    skos:inScheme LitCal: .
+
+LitCal:corpus_christi a owl:ObjectProperty ;
+    rdfs:label "corpus_christi" ;
+    rdfs:range LitCal:CorpusChristi ;
+    skos:inScheme LitCal: .
+
+LitCal:day a owl:DatatypeProperty ;
+    rdfs:label "day" ;
+    rdfs:range xsd:integer ;
+    skos:definition "the day of the month for the liturgical event, represented as an integer from 1 to 31 depending on the month" ;
+    skos:inScheme LitCal: .
+
+LitCal:epiphany a owl:ObjectProperty ;
+    rdfs:label "epiphany" ;
+    rdfs:range LitCal:Epiphany ;
+    skos:inScheme LitCal: .
+
+LitCal:eternal_high_priest a owl:DatatypeProperty ;
+    rdfs:label "eternal_high_priest" ;
+    rdfs:range xsd:boolean ;
+    skos:inScheme LitCal: .
+
+LitCal:first_reading a owl:ObjectProperty ;
+    rdfs:label "first_reading" ;
+    skos:inScheme LitCal: .
+
+LitCal:gospel a owl:ObjectProperty ;
+    rdfs:label "gospel" ;
+    skos:inScheme LitCal: .
+
+LitCal:gospel_acclamation a owl:ObjectProperty ;
+    rdfs:label "gospel_acclamation" ;
+    skos:inScheme LitCal: .
+
+LitCal:holydays_of_obligation a owl:ObjectProperty ;
+    rdfs:label "holydays_of_obligation" ;
+    rdfs:range LitCal:HolyDaysOfObligation ;
+    skos:inScheme LitCal: .
+
+LitCal:responsorial_psalm a owl:ObjectProperty ;
+    rdfs:label "responsorial_psalm" ;
+    skos:inScheme LitCal: .
+
+LitCal:ReadingsFestive a owl:Class ;
+    rdfs:label "ReadingsFestive" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:gospel ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:second_reading ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:first_reading ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:responsorial_psalm ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty LitCal:gospel_acclamation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty LitCal:gospel ] ;
+    skos:definition "the standard lectionary reading schema for festive (feast) Masses" ;
+    skos:inScheme LitCal: .
+
+LitCal:year a owl:ObjectProperty ;
+    rdfs:label "year" ;
+    rdfs:range LitCal:Year ;
+    skos:inScheme LitCal: .
+
+

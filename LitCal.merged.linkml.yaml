@@ -1,0 +1,1193 @@
+name: LitCal
+id: https://example.org/LitCal
+imports:
+- linkml:types
+prefixes:
+  LitCal: https://example.org/LitCal
+  linkml: https://w3id.org/linkml/
+default_prefix: LitCal
+enums:
+  day_of_the_week_options:
+    permissible_values:
+      Sunday: {}
+      Monday: {}
+      Tuesday: {}
+      Wednesday: {}
+      Thursday: {}
+      Friday: {}
+      Saturday: {}
+  relative_time_options:
+    permissible_values:
+      before: {}
+      after: {}
+  liturgical_season_options:
+    permissible_values:
+      ADVENT: {}
+      CHRISTMAS: {}
+      LENT: {}
+      EASTER_TRIDUUM: {}
+      EASTER: {}
+      ORDINARY_TIME: {}
+  year_type_options:
+    permissible_values:
+      CIVIL: {}
+      LITURGICAL: {}
+  return_type_options:
+    permissible_values:
+      ICS: {}
+      JSON: {}
+      XML: {}
+      YML: {}
+slots:
+  first_reading:
+    required: true
+  responsorial_psalm:
+    required: true
+  gospel_acclamation:
+    required: true
+  gospel:
+    required: true
+  second_reading:
+    required: true
+  palm_gospel:
+    required: true
+  responsorial_psalm_2:
+    required: true
+  third_reading:
+    required: true
+  responsorial_psalm_3:
+    required: true
+  fourth_reading:
+    required: true
+  responsorial_psalm_4:
+    required: true
+  fifth_reading:
+    required: true
+  responsorial_psalm_5:
+    required: true
+  sixth_reading:
+    required: true
+  responsorial_psalm_6:
+    required: true
+  seventh_reading:
+    required: true
+  responsorial_psalm_7:
+    required: true
+  epistle:
+    required: true
+  responsorial_psalm_epistle:
+    required: true
+  night:
+    range: ReadingsFestive
+    required: true
+  dawn:
+    range: ReadingsFestive
+    required: true
+  day:
+    description: the day of the month for the liturgical event, represented as an
+      integer from 1 to 31 depending on the month
+    range: integer
+    required: true
+  evening:
+    range: ReadingsFestive
+    required: true
+  schema_one:
+    range: ReadingsFestive
+    required: true
+  schema_two:
+    range: ReadingsFestive
+    required: true
+  schema_three:
+    range: ReadingsFestive
+    required: true
+  easter_season:
+    range: ReadingsFerial
+    required: true
+  outside_easter_season:
+    range: ReadingsFerial
+    required: true
+  Christmas:
+    range: boolean
+  Epiphany:
+    range: boolean
+  Ascension:
+    range: boolean
+  CorpusChristi:
+    range: boolean
+  MaryMotherOfGod:
+    range: boolean
+  ImmaculateConception:
+    range: boolean
+  Assumption:
+    range: boolean
+  StJoseph:
+    range: boolean
+  StsPeterPaulAp:
+    range: boolean
+  AllSaints:
+    range: boolean
+  epiphany:
+    range: Epiphany
+    required: true
+  ascension:
+    range: Ascension
+    required: true
+  corpus_christi:
+    range: CorpusChristi
+    required: true
+  eternal_high_priest:
+    range: boolean
+    required: true
+  holydays_of_obligation:
+    range: HolyDaysOfObligation
+    required: true
+  day_of_the_week:
+    range: day_of_the_week_options
+    required: true
+  relative_time:
+    range: relative_time_options
+    required: true
+  event_key:
+    range: EventKeyNonVigilMass
+    required: true
+  condition:
+    required: true
+  then:
+    required: true
+  event_idx:
+    description: A sequential index number assigned to each liturgical event in the
+      calendar, starting from 0 for the first event that is calculated. This index
+      helps to uniquely identify and reference each event within the liturgical calendar
+      for that year, seeing that the `event_key` property might not be unique.
+    range: integer
+    required: true
+  name:
+    description: the localized full name of the liturgical event in the locale requested
+      and according to the current requested calendar (i.e. General Roman Calendar,
+      National Calendar, Diocesan Calendar)
+    required: true
+  date:
+    description: the date of the liturgical event in ISO 8601 (RFC 3339) format, always
+      at midnight UTC time
+    required: true
+  color:
+    range: LitColor
+    required: true
+  color_lcl:
+    required: true
+    multivalued: true
+  type:
+    range: LitEventType
+    required: true
+  grade:
+    range: LitGrade
+    required: true
+  grade_lcl:
+    description: a localized string describing the liturgical grade of the celebration,
+      such as 'Solemnity', 'Feast', 'Memorial', etc., according to the locale requested
+    required: true
+  grade_abbr:
+    description: a localized abbreviation for the liturgical grade of the celebration,
+      such as 'S' for Solemnity, 'F' for Feast, 'M' for Memorial, etc.
+    required: true
+  grade_display:
+    description: a localized string for display purposes that may differ from the
+      standard name of the liturgical grade; can be null if no special display name
+      is needed, or an empty string if no particular grade is meant to be shown. For
+      example, for Higher Grade Solemnities it would be undesirable to display 'Solemnity
+      with precedence over other solemnities', so this property would be an empty
+      string in that case; or for All Souls Day which is logically treated as a Solemnity
+      but displayed as a 'Commemoration' or as an 'Optional memorial' (according to
+      local translations), so a localized string such as 'Commemoration' or 'Optional
+      memorial' would be appropriate.
+  common:
+    range: LitCommon
+    required: true
+  common_lcl:
+    description: a localized string describing the liturgical Proper or common(s)
+      (if any) associated with the celebration, according to the locale requested
+    required: true
+  day_of_the_week_iso8601:
+    description: the day of the week for the liturgical event, following the ISO 8601
+      standard where Monday is 1 and Sunday is 7
+    range: integer
+    required: true
+  month:
+    description: the month for the liturgical event, represented as an integer from
+      1 (January) to 12 (December)
+    range: integer
+    required: true
+  year:
+    range: Year
+    required: true
+  month_short:
+    description: a localized abbreviated string for the month of the liturgical event,
+      such as 'gen.' for January if Italian was requested
+    required: true
+  month_long:
+    description: a localized full string for the month of the liturgical event, such
+      as 'gennaio' for January if Italian was requested
+    required: true
+  day_of_the_week_short:
+    description: a localized abbreviated string for the day of the week of the liturgical
+      event, such as 'lun.' for Monday if Italian was requested
+    required: true
+  day_of_the_week_long:
+    description: "a localized full string for the day of the week of the liturgical\
+      \ event, such as 'luned\xEC' for Monday if Italian was requested"
+    required: true
+  liturgical_year:
+    description: a localized string representing the liturgical year designation (YEAR
+      A, YEAR B, or YEAR C for Sundays and Solemnities; YEAR I or YEAR II for weekdays)
+      according to the liturgical calendar cycle in use for the requested year
+  is_vigil_mass:
+    description: the property will only exist and will be true if the celebration
+      is a Vigil Mass (i.e., the evening Mass on the day before a solemnity or sunday
+      where the readings may be the same as those used on the day itself); otherwise
+      the property will be absent
+    range: boolean
+    required: true
+  is_vigil_for:
+    description: the `event_key` of the main celebration for which this vigil mass
+      is being held
+    required: true
+  liturgical_season:
+    description: 'an enumeration value of the liturgical season in which the event
+      falls, one of: ADVENT, CHRISTMAS, LENT, EASTER_TRIDUUM, EASTER, ORDINARY_TIME'
+    range: liturgical_season_options
+    required: true
+  liturgical_season_lcl:
+    description: a localized string representing the name of the liturgical season
+      in which the event falls, according to the locale requested
+    required: true
+  psalter_week:
+    description: the psalter week (1 to 4) for the liturgical event, used in the Liturgy
+      of the Hours, if applicable; otherwise 0
+    range: integer
+    required: true
+  readings:
+    range: Readings
+    required: true
+  holy_day_of_obligation:
+    description: the property will only exist and will be true if the celebration
+      is a Holy Day of Obligation, according to the calendar requested; otherwise
+      the property will be absent
+    range: boolean
+  has_vigil_mass:
+    description: indicates whether the celebration has an associated Vigil Mass (i.e.,
+      the evening Mass on the day before the main celebration where the readings may
+      be the same as those used on the day itself)
+    range: boolean
+  has_vesper_i:
+    description: indicates whether the celebration has First Vespers (the vespers
+      of the evening prior to the main celebration)
+    range: boolean
+  has_vesper_ii:
+    description: indicates whether the celebration has Second Vespers (the vespers
+      of the evening of the day of the main celebration)
+    range: boolean
+  year_type:
+    range: year_type_options
+    required: true
+  locale:
+    range: Locale
+    required: true
+  return_type:
+    range: return_type_options
+    required: true
+  national_calendar:
+    range: Nation
+    required: true
+  diocesan_calendar:
+    range: DiocesanCalendarId
+    required: true
+  settings:
+    description: Settings for the liturgical calendar request - can be one of GeneralRomanCalendarSettings,
+      NationalCalendarSettings, or DiocesanCalendarSettings
+    required: true
+  metadata:
+    description: contains information about the current API version, how and when
+      the current response was produced, and keys of liturgical events that can have
+      precedence over others, useful for further calculations of a local calendar
+    required: true
+  litcal:
+    description: Can be either a LiturgicalEvent or LiturgicalEventVigil
+    required: true
+    multivalued: true
+  messages:
+    required: true
+    multivalued: true
+classes:
+  EventKey:
+    description: the `event_key` property of liturgical events in the output of the
+      LitCal API and similar endpoints
+  EventKeyVigilMass:
+    description: the `event_key` property of Vigil Mass liturgical events in the output
+      of the LitCal API and similar endpoints; vigil is used in the broad sense, i.e.,
+      the evening Mass on the day before a solemnity or sunday where the readings
+      may be the same as those used on the day itself
+  EventKeyNonVigilMass:
+    description: the `event_key` property of the main celebration of a liturgical
+      event in the output of the LitCal API and similar endpoints
+  LitColor:
+    description: an array of enumeration values describing the liturgical color(s)
+      associated with the celebration; if more than one liturgical common is associated
+      with a celebration, there may be more than one color associated with the celebration
+  LitCommon:
+    description: an array of enumeration values describing the Liturgical Common(s),
+      or Proper, or Masses for Various Needs and Occasions, of the celebration
+  LitGrade:
+    description: 0 = WEEKDAY, 1 = COMMEMORATION, 2 = MEMORIAL_OPT, 3 = MEMORIAL, 4
+      = FEAST, 5 = FEAST_LORD, 6 = SOLEMNITY, 7 = HIGHER_SOLEMNITY
+  Readings:
+    description: the lectionary readings for the Mass associated with this liturgical
+      event, following one of several possible schemas depending on the type of celebration
+    union_of:
+    - ReadingsFerial
+    - ReadingsFestive
+    - ReadingsPalmSunday
+    - ReadingsEasterVigil
+    - ReadingsChristmas
+    - ReadingsWithEvening
+    - ReadingsMultipleSchemas
+    - ReadingsCommons
+    - ReadingsSeasonal
+  ReadingsFerial:
+    description: the standard lectionary reading schema for ferial (weekday) Masses
+    slots:
+    - first_reading
+    - responsorial_psalm
+    - gospel_acclamation
+    - gospel
+    slot_usage:
+      first_reading:
+        required: true
+      responsorial_psalm:
+        required: true
+      gospel_acclamation:
+        required: true
+      gospel:
+        required: true
+  ReadingsFestive:
+    description: the standard lectionary reading schema for festive (feast) Masses
+    slots:
+    - first_reading
+    - responsorial_psalm
+    - second_reading
+    - gospel_acclamation
+    - gospel
+    slot_usage:
+      first_reading:
+        required: true
+      responsorial_psalm:
+        required: true
+      second_reading:
+        required: true
+      gospel_acclamation:
+        required: true
+      gospel:
+        required: true
+  ReadingsPalmSunday:
+    description: the standard lectionary reading schema for Palm Sunday Masses
+    slots:
+    - palm_gospel
+    - first_reading
+    - responsorial_psalm
+    - second_reading
+    - gospel_acclamation
+    - gospel
+    slot_usage:
+      palm_gospel:
+        required: true
+      first_reading:
+        required: true
+      responsorial_psalm:
+        required: true
+      second_reading:
+        required: true
+      gospel_acclamation:
+        required: true
+      gospel:
+        required: true
+  ReadingsEasterVigil:
+    description: the standard lectionary reading schema for the Easter Vigil Mass
+    slots:
+    - first_reading
+    - responsorial_psalm
+    - second_reading
+    - responsorial_psalm_2
+    - third_reading
+    - responsorial_psalm_3
+    - fourth_reading
+    - responsorial_psalm_4
+    - fifth_reading
+    - responsorial_psalm_5
+    - sixth_reading
+    - responsorial_psalm_6
+    - seventh_reading
+    - responsorial_psalm_7
+    - epistle
+    - responsorial_psalm_epistle
+    - gospel_acclamation
+    - gospel
+    slot_usage:
+      first_reading:
+        required: true
+      responsorial_psalm:
+        required: true
+      second_reading:
+        required: true
+      responsorial_psalm_2:
+        required: true
+      third_reading:
+        required: true
+      responsorial_psalm_3:
+        required: true
+      fourth_reading:
+        required: true
+      responsorial_psalm_4:
+        required: true
+      fifth_reading:
+        required: true
+      responsorial_psalm_5:
+        required: true
+      sixth_reading:
+        required: true
+      responsorial_psalm_6:
+        required: true
+      seventh_reading:
+        required: true
+      responsorial_psalm_7:
+        required: true
+      epistle:
+        required: true
+      responsorial_psalm_epistle:
+        required: true
+      gospel_acclamation:
+        required: true
+      gospel:
+        required: true
+  ReadingsChristmas:
+    description: the standard lectionary reading schema for Christmas Masses (Night,
+      Dawn, and Day); the evening vigil Mass is separated out into its own event
+    slots:
+    - night
+    - dawn
+    - day
+    slot_usage:
+      night:
+        range: ReadingsFestive
+        required: true
+      dawn:
+        range: ReadingsFestive
+        required: true
+      day:
+        range: ReadingsFestive
+        required: true
+  ReadingsWithEvening:
+    description: Used for Easter Sunday, which has both a daytime and an evening Mass,
+      each with proper readings.
+    slots:
+    - day
+    - evening
+    slot_usage:
+      day:
+        range: ReadingsFestive
+        required: true
+      evening:
+        range: ReadingsFestive
+        required: true
+  ReadingsMultipleSchemas:
+    description: Used for All Souls Day (Commemoration of the Faithful Departed),
+      which has three possible schemas for the three allowed Masses.
+    slots:
+    - schema_one
+    - schema_two
+    - schema_three
+    slot_usage:
+      schema_one:
+        range: ReadingsFestive
+        required: true
+      schema_two:
+        range: ReadingsFestive
+        required: true
+      schema_three:
+        range: ReadingsFestive
+        required: true
+  ReadingsCommons:
+    description: Used for memorials and optional memorials that do not have a Proper
+      lectionary. The readings are taken from the Common of Saints, or from Masses
+      for Various Needs and Occasions, as appropriate. Indicates the name of the Common
+      or Mass for Various Needs and Occasions from which the readings are taken.
+  ReadingsSeasonal:
+    description: Lectionary readings that change depending on whether the liturgical
+      event falls within the Easter season.
+    slots:
+    - easter_season
+    - outside_easter_season
+    slot_usage:
+      easter_season:
+        range: ReadingsFerial
+        required: true
+      outside_easter_season:
+        range: ReadingsFerial
+        required: true
+  Day:
+    description: day of the month; the maximum value will be 28, 29, 30, or 31 depending
+      on whether we are dealing with a leap year, and whether we are dealing with
+      a month that usually has 28, 30, or 31 days
+  Month:
+    description: the month for the liturgical event, represented as an integer from
+      1 (January) to 12 (December)
+  LitEventType:
+    description: an enumeration value indicating whether the liturgical event is of
+      type `fixed` or `mobile`
+  Epiphany:
+    description: Enumeration that describes when Epiphany is celebrated in the current
+      calendar
+  Ascension:
+    description: Enumeration that describes when Ascension is celebrated in the current
+      calendar
+  CorpusChristi:
+    description: Enumeration that describes when Corpus Christi is celebrated in the
+      current calendar
+  EternalHighPriest:
+    description: Whether the Jesus Christ, the Eternal High Priest, is celebrated
+      in the current calendar
+  HolyDaysOfObligation:
+    description: a map of `event_key`s to booleans, that indicate which of the standard
+      holy days of obligation are observed in the current requested calendar, plus
+      any additional holy days of obligation proper to the calendar
+    slots:
+    - Christmas
+    - Epiphany
+    - Ascension
+    - CorpusChristi
+    - MaryMotherOfGod
+    - ImmaculateConception
+    - Assumption
+    - StJoseph
+    - StsPeterPaulAp
+    - AllSaints
+    slot_usage:
+      Christmas:
+        range: boolean
+      Epiphany:
+        range: boolean
+      Ascension:
+        range: boolean
+      CorpusChristi:
+        range: boolean
+      MaryMotherOfGod:
+        range: boolean
+      ImmaculateConception:
+        range: boolean
+      Assumption:
+        range: boolean
+      StJoseph:
+        range: boolean
+      StsPeterPaulAp:
+        range: boolean
+      AllSaints:
+        range: boolean
+  CalendarSettings:
+    description: the settings utilized (and possibly requested) to generate the current
+      calendar
+    slots:
+    - epiphany
+    - ascension
+    - corpus_christi
+    - eternal_high_priest
+    - holydays_of_obligation
+    slot_usage:
+      epiphany:
+        range: Epiphany
+      ascension:
+        range: Ascension
+      corpus_christi:
+        range: CorpusChristi
+      eternal_high_priest:
+        range: EternalHighPriest
+      holydays_of_obligation:
+        range: HolyDaysOfObligation
+  Calendar: {}
+  Missals:
+    description: Missals as defined in the PHP RomanMissal enum, from which data for
+      the current calendar is drawn
+  MissalDef:
+    description: an enumeration of Roman Missals supported by the Liturgical Calendar
+      API
+  MissalID:
+    description: an enumeration of Roman Missal IDs for the Roman Missals supported
+      by the Liturgical Calendar API
+  MissalName:
+    description: an enumeration of Roman Missal names for the Roman Missals supported
+      by the Liturgical Calendar API
+  MissalFileName: {}
+  Nation:
+    description: an enumeration of ISO 3166-1 alpha-2 country codes representing nations
+      for which national liturgical calendars can be defined
+  WiderRegionCalendarAction:
+    description: an enumeration of supported actions that act upon a liturgical event
+      in a Wider Region calendar definition
+  NationalCalendarAction:
+    description: an enumeration of supported actions that act upon a liturgical event
+      in a National calendar
+  Year:
+    description: the year for the liturgical event or for the current requested calendar,
+      represented as a four-digit integer
+  Timestamp:
+    description: the earliest possible event timestamp corresponds to Nov 29th 1969,
+      saturday vigil of the First Sunday of Advent
+  Locale:
+    description: IETF language codes comprehensive of region and optionally an ISO
+      15924 script code, following the BCP 47 standard as implemented in PHP intl
+  AcceptLanguage: {}
+  WiderRegionNames: {}
+  DiocesanCalendarId:
+    description: a unique identifier for a diocesan calendar
+  DioceseName:
+    description: The full name of the Diocese for which a diocesan calendar has been
+      defined / requested
+  NationalCalendarId:
+    description: a unique identifier for a national calendar
+  RelativeDateObject:
+    description: a relative date object, describing a day of the week relative to
+      a liturgical event, useful for calculating moveable celebrations
+    slots:
+    - day_of_the_week
+    - relative_time
+    - event_key
+    slot_usage:
+      day_of_the_week:
+        range: day_of_the_week_options
+        required: true
+      relative_time:
+        range: relative_time_options
+        required: true
+      event_key:
+        range: EventKey
+        required: true
+  Timezone:
+    description: a timezone identifier from the IANA Time Zone Database, useful for
+      indicating the timezone for a diocesan calendar
+  ConditionalRule:
+    description: a conditional rule that can be used to adjust dates of liturgical
+      events based on certain conditions; an example is the National Day of Prayer
+      for the Unborn in the United States
+    slots:
+    - condition
+    - then
+    slot_usage:
+      condition:
+        required: true
+      then:
+        required: true
+  DateTimeObjectCollection:
+    description: a collection of date-time objects representing liturgical events,
+      such as the solemnities of the Lord and the Blessed Virgin Mary, solemnities,
+      feasts of the Lord, feasts, memorials, suppressed events, or reinstated events
+  LiturgicalEventVigil:
+    description: When we say vigil, it is in the broad sense of the term, as in the
+      evening Mass on the day preceding the main celebration, where the readings are
+      often the same as those of the day of the main celebration.
+    slots:
+    - event_idx
+    - event_key
+    - name
+    - date
+    - color
+    - color_lcl
+    - type
+    - grade
+    - grade_lcl
+    - grade_abbr
+    - grade_display
+    - common
+    - common_lcl
+    - day_of_the_week_iso8601
+    - month
+    - day
+    - year
+    - month_short
+    - month_long
+    - day_of_the_week_short
+    - day_of_the_week_long
+    - liturgical_year
+    - is_vigil_mass
+    - is_vigil_for
+    - liturgical_season
+    - liturgical_season_lcl
+    - psalter_week
+    - readings
+    - holy_day_of_obligation
+    slot_usage:
+      event_idx:
+        description: A sequential index number assigned to each liturgical event in
+          the calendar, starting from 0 for the first event that is calculated. This
+          index helps to uniquely identify and reference each event within the liturgical
+          calendar for that year, seeing that the `event_key` property might not be
+          unique.
+        range: integer
+        required: true
+      event_key:
+        range: EventKeyVigilMass
+        required: true
+      name:
+        description: the localized full name of the liturgical event in the locale
+          requested and according to the current requested calendar (i.e. General
+          Roman Calendar, National Calendar, Diocesan Calendar)
+        required: true
+      date:
+        description: the date of the liturgical event in ISO 8601 (RFC 3339) format,
+          always at midnight UTC time
+        required: true
+      color:
+        range: LitColor
+        required: true
+      color_lcl:
+        required: true
+        multivalued: true
+      type:
+        range: LitEventType
+        required: true
+      grade:
+        range: LitGrade
+        required: true
+      grade_lcl:
+        description: a localized string describing the liturgical grade of the celebration,
+          such as 'Solemnity', 'Feast', 'Memorial', etc., according to the locale
+          requested
+        required: true
+      grade_abbr:
+        description: a localized abbreviation for the liturgical grade of the celebration,
+          such as 'S' for Solemnity, 'F' for Feast, 'M' for Memorial, etc.
+        required: true
+      grade_display:
+        description: a localized string for display purposes that may differ from
+          the standard name of the liturgical grade; can be null if no special display
+          name is needed, or an empty string if no particular grade is meant to be
+          shown. For example, for Higher Grade Solemnities it would be undesirable
+          to display 'Solemnity with precedence over other solemnities', so this property
+          would be an empty string in that case; or for All Souls Day which is logically
+          treated as a Solemnity but displayed as a 'Commemoration' or as an 'Optional
+          memorial' (according to local translations), so a localized string such
+          as 'Commemoration' or 'Optional memorial' would be appropriate.
+      common:
+        range: LitCommon
+        required: true
+      common_lcl:
+        description: a localized string describing the liturgical Proper or common(s)
+          (if any) associated with the celebration, according to the locale requested
+        required: true
+      day_of_the_week_iso8601:
+        description: the day of the week for the liturgical event, following the ISO
+          8601 standard where Monday is 1 and Sunday is 7
+        range: integer
+        required: true
+      month:
+        description: the month for the liturgical event, represented as an integer
+          from 1 (January) to 12 (December)
+        range: integer
+        required: true
+      day:
+        description: the day of the month for the liturgical event, represented as
+          an integer from 1 to 31 depending on the month
+        range: integer
+        required: true
+      year:
+        description: the year for the liturgical event, between 1969 and 9999; will
+          have the same value for all events when requesting a CIVIL year calendar,
+          but may differ when requesting a LITURGICAL year calendar (i.e. events from
+          the first Sunday of Advent to December 31 will have the previous year as
+          their year value, and events from January 1 to the last Saturday following
+          Christ the King will have the requested year as their year value)
+        range: integer
+        required: true
+      month_short:
+        description: a localized abbreviated string for the month of the liturgical
+          event, such as 'gen.' for January if Italian was requested
+        required: true
+      month_long:
+        description: a localized full string for the month of the liturgical event,
+          such as 'gennaio' for January if Italian was requested
+        required: true
+      day_of_the_week_short:
+        description: a localized abbreviated string for the day of the week of the
+          liturgical event, such as 'lun.' for Monday if Italian was requested
+        required: true
+      day_of_the_week_long:
+        description: a localized full string for the day of the week of the liturgical
+          event, such as 'lunedi' for Monday if Italian was requested
+        required: true
+      liturgical_year:
+        description: a localized string representing the liturgical year designation
+          (YEAR A, YEAR B, or YEAR C for Sundays and Solemnities; YEAR I or YEAR II
+          for weekdays) according to the liturgical calendar cycle in use for the
+          requested year
+      is_vigil_mass:
+        description: the property will only exist and will be true if the celebration
+          is a Vigil Mass (i.e., the evening Mass on the day before a solemnity or
+          sunday where the readings may be the same as those used on the day itself);
+          otherwise the property will be absent
+        range: boolean
+        required: true
+      is_vigil_for:
+        description: the `event_key` of the main celebration for which this vigil
+          mass is being held
+        required: true
+      liturgical_season:
+        description: 'an enumeration value of the liturgical season in which the event
+          falls, one of: ADVENT, CHRISTMAS, LENT, EASTER_TRIDUUM, EASTER, ORDINARY_TIME'
+        range: liturgical_season_options
+        required: true
+      liturgical_season_lcl:
+        description: a localized string representing the name of the liturgical season
+          in which the event falls, according to the locale requested
+        required: true
+      psalter_week:
+        description: the psalter week (1 to 4) for the liturgical event, used in the
+          Liturgy of the Hours, if applicable; otherwise 0
+        range: integer
+        required: true
+      readings:
+        range: Readings
+        required: true
+      holy_day_of_obligation:
+        description: the property will only exist and will be true if the celebration
+          is a Holy Day of Obligation, according to the calendar requested; otherwise
+          the property will be absent
+        range: boolean
+  LiturgicalEvent:
+    description: a liturgical event in the calendar, such as a solemnity, feast, memorial,
+      temporal celebration, weekday etc.
+    slots:
+    - event_idx
+    - event_key
+    - name
+    - date
+    - color
+    - color_lcl
+    - type
+    - grade
+    - grade_lcl
+    - grade_abbr
+    - grade_display
+    - common
+    - common_lcl
+    - day_of_the_week_iso8601
+    - month
+    - day
+    - year
+    - month_short
+    - month_long
+    - day_of_the_week_short
+    - day_of_the_week_long
+    - liturgical_year
+    - liturgical_season
+    - liturgical_season_lcl
+    - has_vigil_mass
+    - has_vesper_i
+    - has_vesper_ii
+    - psalter_week
+    - readings
+    - holy_day_of_obligation
+    slot_usage:
+      event_idx:
+        description: A sequential index number assigned to each liturgical event in
+          the calendar, starting from 0 for the first event that is calculated. This
+          index helps to uniquely identify and reference each event within the liturgical
+          calendar for that year, seeing that the `event_key` property might not be
+          unique.
+        range: integer
+        required: true
+      event_key:
+        range: EventKeyNonVigilMass
+        required: true
+      name:
+        description: the localized full name of the liturgical event in the locale
+          requested and according to the current requested calendar (i.e. General
+          Roman Calendar, National Calendar, Diocesan Calendar)
+        required: true
+      date:
+        description: the date of the liturgical event in ISO 8601 (RFC 3339) format,
+          always at midnight UTC time
+        required: true
+      color:
+        range: LitColor
+        required: true
+      color_lcl:
+        required: true
+        multivalued: true
+      type:
+        range: LitEventType
+        required: true
+      grade:
+        range: LitGrade
+        required: true
+      grade_lcl:
+        description: a localized string describing the liturgical grade of the celebration,
+          such as 'Solemnity', 'Feast', 'Memorial', etc., according to the locale
+          requested
+        required: true
+      grade_abbr:
+        description: a localized abbreviation for the liturgical grade of the celebration,
+          such as 'S' for Solemnity, 'F' for Feast, 'M' for Memorial, etc.
+        required: true
+      grade_display:
+        description: a localized string for display purposes that may differ from
+          the standard name of the liturgical grade; can be null if no special display
+          name is needed, or an empty string if no particular grade is meant to be
+          shown. For example, for Higher Grade Solemnities it would be undesirable
+          to display 'Solemnity with precedence over other solemnities', so this property
+          would be an empty string in that case; or for All Souls Day which is logically
+          treated as a Solemnity but displayed as a 'Commemoration' or as an 'Optional
+          memorial' (according to local translations), so a localized string such
+          as 'Commemoration' or 'Optional memorial' would be appropriate.
+      common:
+        range: LitCommon
+        required: true
+      common_lcl:
+        description: a localized string describing the liturgical Proper or common(s)
+          (if any) associated with the celebration, according to the locale requested
+        required: true
+      day_of_the_week_iso8601:
+        description: the day of the week for the liturgical event, following the ISO
+          8601 standard where Monday is 1 and Sunday is 7
+        range: integer
+        required: true
+      month:
+        description: the month for the liturgical event, represented as an integer
+          from 1 (January) to 12 (December)
+        range: integer
+        required: true
+      day:
+        description: the day of the month for the liturgical event, represented as
+          an integer from 1 to 31 depending on the month
+        range: integer
+        required: true
+      year:
+        description: the year for the liturgical event, between 1969 and 9999; will
+          have the same value for all events when requesting a CIVIL year calendar,
+          but may differ when requesting a LITURGICAL year calendar (i.e. events from
+          the first Sunday of Advent to December 31 will have the previous year as
+          their year value, and events from January 1 to the last Saturday following
+          Christ the King will have the requested year as their year value)
+        range: integer
+        required: true
+      month_short:
+        description: a localized abbreviated string for the month of the liturgical
+          event, such as 'gen.' for January if Italian was requested
+        required: true
+      month_long:
+        description: a localized full string for the month of the liturgical event,
+          such as 'gennaio' for January if Italian was requested
+        required: true
+      day_of_the_week_short:
+        description: a localized abbreviated string for the day of the week of the
+          liturgical event, such as 'lun.' for Monday if Italian was requested
+        required: true
+      day_of_the_week_long:
+        description: "a localized full string for the day of the week of the liturgical\
+          \ event, such as 'luned\xEC' for Monday if Italian was requested"
+        required: true
+      liturgical_year:
+        description: a localized string representing the liturgical year designation
+          (YEAR A, YEAR B, or YEAR C for Sundays and Solemnities; YEAR I or YEAR II
+          for weekdays) according to the liturgical calendar cycle in use for the
+          requested year
+      liturgical_season:
+        description: 'an enumeration value of the liturgical season in which the event
+          falls, one of: ADVENT, CHRISTMAS, LENT, EASTER_TRIDUUM, EASTER, ORDINARY_TIME'
+        range: liturgical_season_options
+        required: true
+      liturgical_season_lcl:
+        description: a localized string representing the name of the liturgical season
+          in which the event falls, according to the locale requested
+        required: true
+      has_vigil_mass:
+        description: indicates whether the celebration has an associated Vigil Mass
+          (i.e., the evening Mass on the day before the main celebration where the
+          readings may be the same as those used on the day itself)
+        range: boolean
+      has_vesper_i:
+        description: indicates whether the celebration has First Vespers (the vespers
+          of the evening prior to the main celebration)
+        range: boolean
+      has_vesper_ii:
+        description: indicates whether the celebration has Second Vespers (the vespers
+          of the evening of the day of the main celebration)
+        range: boolean
+      psalter_week:
+        description: the psalter week (1 to 4) for the liturgical event, used in the
+          Liturgy of the Hours, if applicable; otherwise 0
+        range: integer
+        required: true
+      readings:
+        range: Readings
+        required: true
+      holy_day_of_obligation:
+        description: the property will only exist and will be true if the celebration
+          is a Holy Day of Obligation, according to the calendar requested; otherwise
+          the property will be absent
+        range: boolean
+  GeneralRomanCalendarSettings:
+    description: .the settings that were utilized (and possibly requested) to generate
+      the General Roman Calendar
+    slots:
+    - year
+    - year_type
+    - epiphany
+    - ascension
+    - corpus_christi
+    - locale
+    - return_type
+    - eternal_high_priest
+    - holydays_of_obligation
+    slot_usage:
+      year:
+        range: Year
+        required: true
+      year_type:
+        range: year_type_options
+        required: true
+      epiphany:
+        range: Epiphany
+        required: true
+      ascension:
+        range: Ascension
+        required: true
+      corpus_christi:
+        range: CorpusChristi
+        required: true
+      locale:
+        range: Locale
+        required: true
+      return_type:
+        range: return_type_options
+        required: true
+      eternal_high_priest:
+        range: boolean
+        required: true
+      holydays_of_obligation:
+        range: HolyDaysOfObligation
+        required: true
+  NationalCalendarSettings:
+    description: the settings utilized (and possibly requested) to generate the national
+      calendar
+    slots:
+    - year
+    - year_type
+    - epiphany
+    - ascension
+    - corpus_christi
+    - locale
+    - return_type
+    - eternal_high_priest
+    - holydays_of_obligation
+    - national_calendar
+    slot_usage:
+      year:
+        range: Year
+        required: true
+      year_type:
+        range: year_type_options
+        required: true
+      epiphany:
+        range: Epiphany
+        required: true
+      ascension:
+        range: Ascension
+        required: true
+      corpus_christi:
+        range: CorpusChristi
+        required: true
+      locale:
+        range: Locale
+        required: true
+      return_type:
+        range: return_type_options
+        required: true
+      eternal_high_priest:
+        range: boolean
+        required: true
+      holydays_of_obligation:
+        range: HolyDaysOfObligation
+        required: true
+      national_calendar:
+        range: Nation
+        required: true
+  DiocesanCalendarSettings:
+    description: the settings that were utilized (and possibly requested) to generate
+      the diocesan calendar
+    slots:
+    - year
+    - year_type
+    - epiphany
+    - ascension
+    - corpus_christi
+    - locale
+    - return_type
+    - eternal_high_priest
+    - holydays_of_obligation
+    - national_calendar
+    - diocesan_calendar
+    slot_usage:
+      year:
+        range: Year
+        required: true
+      year_type:
+        range: year_type_options
+        required: true
+      epiphany:
+        range: Epiphany
+        required: true
+      ascension:
+        range: Ascension
+        required: true
+      corpus_christi:
+        range: CorpusChristi
+        required: true
+      locale:
+        range: Locale
+        required: true
+      return_type:
+        range: return_type_options
+        required: true
+      eternal_high_priest:
+        range: boolean
+        required: true
+      holydays_of_obligation:
+        range: HolyDaysOfObligation
+        required: true
+      national_calendar:
+        range: Nation
+        required: true
+      diocesan_calendar:
+        range: DiocesanCalendarId
+        required: true
+  LitCal:
+    slots:
+    - settings
+    - metadata
+    - litcal
+    - messages
+    slot_usage:
+      settings:
+        description: Settings for the liturgical calendar request - can be one of
+          GeneralRomanCalendarSettings, NationalCalendarSettings, or DiocesanCalendarSettings
+        required: true
+      metadata:
+        description: contains information about the current API version, how and when
+          the current response was produced, and keys of liturgical events that can
+          have precedence over others, useful for further calculations of a local
+          calendar
+        required: true
+      litcal:
+        description: Can be either a LiturgicalEvent or LiturgicalEventVigil
+        required: true
+        multivalued: true
+      messages:
+        required: true
+        multivalued: true
+
