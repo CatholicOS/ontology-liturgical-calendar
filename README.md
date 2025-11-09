@@ -55,3 +55,49 @@ I have used Claude Code to assist in the process, and Claude Code summed up the 
   The OWL ontology is ready to use with Protégé, SPARQL queries, or any other semantic web tools!
 
 -----
+
+I was not immediately able to import the resulting OWL file into WebProtege.
+I fed the error messages back into Claude Code, which provided a series of steps to attempt a fix:
+
+-----
+
+  ✅ Fixed OWL File Ready for WebProtégé!
+
+  *Problems Found*
+
+  1. Invalid Turtle syntax: The ontology **IRI** was `LitCal:.owl.ttl` instead of a proper **URI**
+  2. Missing ontology declaration: **RDF/XML** was missing the `owl:Ontology` element
+  3. Duplicate ontologies: Bad **IRI** from Turtle conversion carried over
+
+  *Solution Applied*
+
+  Created and ran `fix_owl_ontology.py` which:
+  - Added proper `<owl:Ontology rdf:about="https://example.org/LitCal">` declaration
+  - Removed invalid duplicate ontology declarations
+  - Validated and formatted the final file
+
+  *Final Validated OWL File*
+
+  Use this file: `jsondata/schemas/LitCal_fixed.owl`
+
+  *Statistics:*
+  - ✅ Format: RDF/XML (WebProtégé compatible)
+  - ✅ Size: 249KB, 3,836 lines
+  - ✅ Total triples: 2,538
+  - ✅ OWL Classes: 78
+  - ✅ Object Properties: 66
+  - ✅ Valid ontology IRI: https://example.org/LitCal
+  - ✅ Validated with rdflib parser
+
+  *Files Created/Updated*
+
+  1. `merge_schemas.py` - Merges CommonDef.json into LitCal schema
+  2. `fix_owl_ontology.py` - Fixes and validates OWL ontology
+  3. `LitCal.merged.json` - Inline JSON Schema
+  4. `LitCal.merged.linkml.yaml` - LinkML intermediate format
+  5. `LitCal_fixed.owl` - Your validated OWL ontology! 🎉
+  6. `SCHEMA_SIMPLIFICATION_NOTES.md` - Complete documentation
+
+  The `LitCal_fixed.owl` file has been validated and should now import successfully into WebProtégé without any parsing errors. Try uploading it again!
+
+-----
