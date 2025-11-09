@@ -1,4 +1,4 @@
-# ontology-liturgical-calendar
+# Liturgical Calendar Ontology
 A semantic description of the elements that comprise a digital representation of the Roman Catholic liturgical calendar for any given year.
 
 As a first attempt to generate the ontology in OWL format,
